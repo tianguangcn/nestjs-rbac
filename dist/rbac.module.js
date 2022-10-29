@@ -86,7 +86,6 @@ RBAcModule = RBAcModule_1 = __decorate([
         imports: [config_1.ConfigModule],
         exports: [
             rbac_service_1.RbacService,
-            core_1.ModuleRef
         ],
     })
 ], RBAcModule);

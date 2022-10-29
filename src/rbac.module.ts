@@ -18,7 +18,6 @@ import { StorageRbacService } from './services/storage.rbac.service';
     imports: [ConfigModule ],
     exports: [
         RbacService,
-        ModuleRef
     ],
 })
 export class RBAcModule {

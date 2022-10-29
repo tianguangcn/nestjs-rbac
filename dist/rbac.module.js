@@ -19,16 +19,16 @@ let RBAcModule = RBAcModule_1 = class RBAcModule {
         RBAcModule_1.cacheOptions = options;
         return RBAcModule_1;
     }
-    static forRoot(moduleRef, rbac, providers, imports) {
-        return RBAcModule_1.forDynamic(moduleRef, class {
+    static forRoot(rbac, providers, imports) {
+        return RBAcModule_1.forDynamic(class {
             async getRbac() {
                 return rbac;
             }
             ;
         }, providers, imports);
     }
-    static forDynamic(moduleRef, rbac, providers, imports) {
-        const inject = [moduleRef, rbac];
+    static forDynamic(rbac, providers, imports) {
+        const inject = [this.moduleRef, rbac];
         const commonProviders = [];
         if (RBAcModule_1.cache) {
             commonProviders.push(RBAcModule_1.cache, {
@@ -75,6 +75,7 @@ let RBAcModule = RBAcModule_1 = class RBAcModule {
         return cache;
     }
 };
+RBAcModule.moduleRef = core_1.ModuleRef;
 RBAcModule = RBAcModule_1 = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({

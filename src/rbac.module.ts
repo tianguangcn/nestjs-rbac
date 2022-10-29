@@ -15,9 +15,10 @@ import { StorageRbacService } from './services/storage.rbac.service';
         StorageRbacService,
         Reflector,
     ],
-    imports: [ConfigModule],
+    imports: [ConfigModule ],
     exports: [
         RbacService,
+        ModuleRef
     ],
 })
 export class RBAcModule {
@@ -37,6 +38,7 @@ export class RBAcModule {
     }
 
     static forRoot(
+        moduleRef: ModuleRef,
         rbac: IStorageRbac,
         providers?: any[],
         imports?: any[],
@@ -44,6 +46,7 @@ export class RBAcModule {
 
         return RBAcModule.forDynamic(
             /* tslint:disable */
+            moduleRef,
             class {
                 async getRbac(): Promise<IStorageRbac> {
                     return rbac;
@@ -55,11 +58,12 @@ export class RBAcModule {
     }
 
     static forDynamic(
+        moduleRef: ModuleRef,
         rbac: new () => IDynamicStorageRbac,
         providers?: any[],
         imports?: any[],
     ): DynamicModule {
-        const inject = [ModuleRef, rbac];
+        const inject = [moduleRef, rbac];
         const commonProviders = [];
         if (RBAcModule.cache) {
             commonProviders.push(RBAcModule.cache, {

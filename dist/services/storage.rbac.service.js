@@ -126,6 +126,7 @@ let StorageRbacService = class StorageRbacService {
 };
 StorageRbacService = __decorate([
     (0, common_1.Injectable)(),
+    __param(0, (0, common_1.Inject)('ModuleRef')),
     __param(2, (0, common_1.Optional)()),
     __param(2, (0, common_1.Inject)('ICacheRBAC')),
     __metadata("design:paramtypes", [core_1.ModuleRef, Object, Object])

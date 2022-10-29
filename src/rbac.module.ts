@@ -1,4 +1,4 @@
-import { DynamicModule, Global, Module } from '@nestjs/common';
+import { DynamicModule, Global, Inject, Module } from '@nestjs/common';
 import { ModuleRef, Reflector } from '@nestjs/core';
 
 import { ConfigModule } from '@nestjs/config';
@@ -15,13 +15,12 @@ import { StorageRbacService } from './services/storage.rbac.service';
         StorageRbacService,
         Reflector,
     ],
-    imports: [ConfigModule ],
+    imports: [ConfigModule],
     exports: [
         RbacService,
     ],
 })
 export class RBAcModule {
-    private static moduleRef = ModuleRef;
     private static cache?: any | ICacheRBAC;
     private static cacheOptions?: { KEY?: string, TTL?: number };
 
@@ -37,8 +36,9 @@ export class RBAcModule {
         return RBAcModule;
     }
 
-
+    // TODO:  moduleRef
     static forRoot(
+        moduleRef: typeof ModuleRef = ModuleRef,
         rbac: IStorageRbac,
         providers?: any[],
         imports?: any[],
@@ -46,6 +46,7 @@ export class RBAcModule {
 
         return RBAcModule.forDynamic(
             /* tslint:disable */
+            moduleRef,
             class {
                 async getRbac(): Promise<IStorageRbac> {
                     return rbac;
@@ -57,12 +58,12 @@ export class RBAcModule {
     }
 
     static forDynamic(
+        moduleRef: typeof ModuleRef = ModuleRef,
         rbac: new () => IDynamicStorageRbac,
         providers?: any[],
         imports?: any[],
     ): DynamicModule {
-        // TODO:  moduleRef
-        const inject = [this.moduleRef, rbac];
+        const inject = [moduleRef, rbac];
         const commonProviders = [];
         if (RBAcModule.cache) {
             commonProviders.push(RBAcModule.cache, {

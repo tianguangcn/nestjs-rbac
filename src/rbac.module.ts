@@ -38,7 +38,7 @@ export class RBAcModule {
 
     // TODO:  moduleRef
     static forRoot(
-        moduleRef: typeof ModuleRef = ModuleRef,
+        moduleRef: any = ModuleRef,
         rbac: IStorageRbac,
         providers?: any[],
         imports?: any[],
@@ -58,7 +58,7 @@ export class RBAcModule {
     }
 
     static forDynamic(
-        moduleRef: typeof ModuleRef = ModuleRef,
+        moduleRef: any = ModuleRef,
         rbac: new () => IDynamicStorageRbac,
         providers?: any[],
         imports?: any[],

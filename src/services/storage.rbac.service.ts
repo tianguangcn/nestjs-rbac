@@ -7,6 +7,7 @@ import { ICacheRBAC } from '../interfaces/cache.rbac.interface';
 @Injectable()
 export class StorageRbacService {
     constructor(
+        @Inject(ModuleRef)
         private readonly moduleRef: ModuleRef,
         private readonly rbac: IDynamicStorageRbac,
         @Optional() @Inject('ICacheRBAC')

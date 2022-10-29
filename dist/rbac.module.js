@@ -9,8 +9,9 @@ var RBAcModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RBAcModule = void 0;
 const common_1 = require("@nestjs/common");
-const rbac_service_1 = require("./services/rbac.service");
 const core_1 = require("@nestjs/core");
+const config_1 = require("@nestjs/config");
+const rbac_service_1 = require("./services/rbac.service");
 const storage_rbac_service_1 = require("./services/storage.rbac.service");
 let RBAcModule = RBAcModule_1 = class RBAcModule {
     static useCache(cache, options) {
@@ -82,7 +83,7 @@ RBAcModule = RBAcModule_1 = __decorate([
             storage_rbac_service_1.StorageRbacService,
             core_1.Reflector,
         ],
-        imports: [],
+        imports: [config_1.ConfigModule],
         exports: [
             rbac_service_1.RbacService,
         ],

@@ -1,7 +1,7 @@
 import { DynamicModule } from '@nestjs/common';
-import { IStorageRbac } from './interfaces/storage.rbac.interface';
-import { IDynamicStorageRbac } from './interfaces/dynamic.storage.rbac.interface';
 import { ICacheRBAC } from './interfaces/cache.rbac.interface';
+import { IDynamicStorageRbac } from './interfaces/dynamic.storage.rbac.interface';
+import { IStorageRbac } from './interfaces/storage.rbac.interface';
 export declare class RBAcModule {
     private static cache?;
     private static cacheOptions?;
